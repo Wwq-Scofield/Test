@@ -12,6 +12,9 @@ public class CollectionsUtil {
         if (list == null) {
             return true;
         } else {
+            Common.init(GlobalContext.getAppContext(),new Common.Builder()
+                        .isDebug(true)
+                        .httpSpName(""));
             return list.isEmpty();
         }
     }

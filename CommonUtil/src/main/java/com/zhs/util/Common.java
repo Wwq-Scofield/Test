@@ -1,13 +1,20 @@
 package com.zhs.util;
 
+import android.content.Context;
+
 /**
  * Created by Administrator on 2017/8/30.
  */
 
 public class Common {
     private static Common instance;
-    private boolean isDebug;
-    private String httpSpName;
+    public static void init(Context context, Builder builder) {
+        if (builder == null) {
+            throw new IllegalArgumentException("configuration can not be null!");
+        }
+        Constant.isDebug=builder.isDebug;
+        Constant.httpSpName=builder.httpSpName;
+    }
 
     public Common() {
 
@@ -25,29 +32,23 @@ public class Common {
         return instance;
     }
 
-    /**
-     * true: open log
-     * false: close log
-     *
-     * @param flag
-     */
-    public void setDebugMode(boolean flag) {
-        this.isDebug = flag;
-    }
+    public static class Builder {
+        private boolean isDebug;
+        private String httpSpName;
 
-    /**
-     * @param return true: open log
-     *               false: close log
-     */
-    public boolean isDebug() {
-        return isDebug;
-    }
+        public Builder isDebug(boolean isDebug) {
+            this.isDebug = isDebug;
+            return this;
+        }
 
-    public void setHttpSpName(String name) {
-        this.httpSpName = name;
-    }
-    public String getHttpSpName() {
-        return httpSpName == null ? "pre_http_sp" : httpSpName;
+        public Builder httpSpName(String httpSpName) {
+            this.httpSpName = httpSpName;
+            return this;
+        }
+
+        public Builder build() {
+            return new Builder();
+        }
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.Set;
  **/
 public class PreferenceHttpHelper {
     private static SharedPreferences getSharedPreference(Context context) {
-        String sp_name=Common.getInstance().getHttpSpName();
+        String sp_name=Constant.httpSpName;
         return context.getSharedPreferences(sp_name, Context.MODE_PRIVATE);
     }
     public static String getString(String key, String defValue) {
